@@ -4,7 +4,12 @@ Cờ Ca-rô (Gomoku) realtime. Bàn 10x10, cứ 10 nước thì mở rộng thê
 Không database, mọi phòng nằm trên RAM, chạy ổn trên VPS 1GB.
 
 ## Chạy thử
-
+```bash
+git clone https://github.com/HoangHin/Gomoku_Vibe.git
+```
+```bash
+cd Gomoku_Vibe
+```
 ```bash
 npm install
 cp .env.example .env      # điền GEMINI_API_KEY (bỏ trống vẫn chơi được, AI dùng heuristic + câu khịa dựng sẵn)
@@ -13,21 +18,6 @@ npm start                 # http://localhost:3000
 ```
 
 Cần Node 18 trở lên.
-
-## Cấu trúc
-
-```
-server.js      web server + WebSocket, quản lý phòng trên RAM
-gameLogic.js   luật cờ: chặn 2 đầu, mở rộng bàn
-ai.js          heuristic + Gemini (chọn nước + câu khịa)
-public/
-  index.html   khung giao diện
-  theme.js     TỰ CUSTOM: màu, quân X/O, lưới, màu hiệu ứng
-  style.css    giao diện, animation nhấp nháy, rung màn hình
-  audio.js     mini player nhạc nền
-  app.js       client WebSocket, vẽ canvas, 4 hiệu ứng kết liễu
-  music/       đặt bgm.mp3 vào đây
-```
 
 ## Tự custom
 
