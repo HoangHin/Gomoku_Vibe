@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d0b21">
+  <title>Cờ Ca-rô</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d0b21'/%3E%3Cpath d='M14 14l22 22M36 14L14 36' stroke='%23ff3d81' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='42' cy='42' r='11' fill='none' stroke='%2326e4ff' stroke-width='6'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- ============ MENU ============ -->
+    <section id="screenMenu" class="screen menu">
+      <div class="menu-inner">
+        <h1 class="brand">
+          <span class="mark mark-x" aria-hidden="true">✕</span><span class="mark mark-o" aria-hidden="true">◯</span>
+          Cờ Ca-rô
+        </h1>
+        <p class="tagline">Bàn cờ lớn thêm một vòng sau mỗi 10 nước. Đủ 5 quân liên tiếp là thắng.</p>
+
+        <button id="btnPve" class="btn btn-primary" disabled>Chơi với máy</button>
+        <button id="btnPvp" class="btn btn-secondary" disabled>Tạo phòng 1v1</button>
+
+        <form id="joinForm" class="join" autocomplete="off">
+          <label class="sr-only" for="codeInput">Mã phòng 4 chữ số</label>
+          <input id="codeInput" class="code-input" type="text" inputmode="numeric" pattern="[0-9]{4}"
+                 maxlength="4" placeholder="Mã phòng 4 số" disabled>
+          <button id="btnJoin" class="btn btn-ghost" type="submit" disabled>Vào phòng</button>
+        </form>
+
+        <p id="connInfo" class="conn" role="status">Đang kết nối tới máy chủ…</p>
+      </div>
+    </section>
+
+    <!-- ============ MÀN CHƠI ============ -->
+    <section id="screenGame" class="screen game" hidden>
+      <header class="topbar">
+        <div class="topbar-left">
+          <strong id="roomLabel" class="room-label"></strong>
+          <span id="youChip" class="chip"></span>
+        </div>
+        <button id="btnLeave" class="btn btn-small btn-ghost" type="button">Rời phòng</button>
+      </header>
+
+      <div id="statusPill" class="status" role="status" aria-live="polite"></div>
+
+      <div id="tauntRow" class="taunt-row" hidden>
+        <span class="taunt-avatar" aria-hidden="true">🤖</span>
+        <p id="taunt" class="bubble" hidden></p>
+      </div>
+
+      <main id="stage" class="stage">
+        <div id="boardWrap" class="board-wrap">
+          <canvas id="board" aria-label="Bàn cờ"></canvas>
+          <div id="overlay" class="overlay">
+            <div id="glow" class="glow" hidden></div>
+          </div>
+          <div id="waitBox" class="wait-box" hidden>
+            <p class="wait-hint">Gửi mã này cho bạn bè để vào phòng</p>
+            <p id="waitCode" class="wait-code"></p>
+            <p class="wait-sub">Đang chờ đối thủ…</p>
+          </div>
+        </div>
+
+        <div id="result" class="result" hidden>
+          <h2 id="resultTitle" class="result-title"></h2>
+          <p id="resultSub" class="result-sub"></p>
+          <div class="result-actions">
+            <button id="btnRematch" class="btn btn-primary" type="button">Đấu lại</button>
+            <button id="btnMenu" class="btn btn-ghost" type="button">Về menu</button>
+          </div>
+        </div>
+      </main>
+    </section>
+
+    <!-- ============ HỘP THOẠI + THÔNG BÁO ============ -->
+    <div id="modal" class="modal" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <h2 id="modalTitle"></h2>
+        <p id="modalText"></p>
+        <button id="modalBtn" class="btn btn-primary" type="button">Về menu</button>
+      </div>
+    </div>
+    <div id="toast" class="toast" role="alert" hidden></div>
+  </div>
+
+  <!-- Lớp hiệu ứng kết liễu phủ toàn màn hình -->
+  <canvas id="fx" class="fx" aria-hidden="true"></canvas>
+
+  <!-- Mini audio player -->
+  <div id="bgm" class="bgm">
+    <button id="bgmToggle" class="bgm-btn" type="button" aria-label="Bật hoặc tắt nhạc nền">♪</button>
+    <input id="bgmVol" class="bgm-vol" type="range" min="0" max="1" step="0.01" value="0.35" aria-label="Âm lượng nhạc nền">
+    <select id="bgmSelect" class="bgm-label" style="background: transparent; color: inherit; border: none; outline: none; cursor: pointer;"></select>
+  </div>
+
+    <script src="theme.js?v=4"></script>
+	<script src="audio.js?v=2"></script>
+	<script src="app.js?v=4"></script>
+</body>
+</html>

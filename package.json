@@ -1,0 +1,18 @@
+{
+  "name": "caro-vibe",
+  "version": "1.0.0",
+  "description": "Cờ Ca-rô (Gomoku) realtime, bàn cờ mở rộng động, tối ưu cho VPS 1GB RAM",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node --max-old-space-size=256 server.js",
+    "test": "node test/gameLogic.test.js && node test/ai.test.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "ws": "^8.18.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
